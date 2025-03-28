@@ -1,4 +1,6 @@
 🛍️ Django E-Commerce
+
+
 A powerful online store built with Django, featuring user authentication, shopping cart, order management, and Stripe payments.
 
 
