@@ -1,0 +1,5 @@
+Django~=5.1.7
+
+pillow~=11.1.0
+
+stripe~=11.6.0

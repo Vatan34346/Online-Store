@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Изображение продукта -->
+        <div class="col-md-6 text-center">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid rounded shadow-sm animate-fade-in">
+            {% else %}
+                <img src="https://via.placeholder.com/400" alt="No Image Available" class="img-fluid rounded shadow-sm">
+            {% endif %}
+        </div>
+
+        <!-- Информация о продукте -->
+        <div class="col-md-6">
+            <h2 class="fw-bold">{{ product.name }}</h2>
+            <p class="text-muted">{{ product.category }}</p>
+            <h4 class="text-primary">${{ product.price }}</h4>
+
+            <p class="mt-3">{{ product.description }}</p>
+
+            <!-- Форма для добавления в корзину -->
+            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="number" name="quantity" class="form-control" value="1" min="1">
+                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                </div>
+            </form>
+
+            <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">Back to Products</a>
+        </div>
+    </div>
+</div>
+
+<!-- Простая анимация для плавного появления -->
+<style>
+    .animate-fade-in {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Placed Successfully{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5 animate-fade-in">
+    <div class="card shadow-sm border-0 p-4">
+        <div class="card-body">
+            <h2 class="text-success fw-bold">🎉 Order Placed Successfully!</h2>
+            <p class="text-muted">Thank you for your purchase. Your order has been successfully processed.</p>
+            <p>We'll send you an update when your order is shipped.</p>
+            <div class="mt-4">
+                <a href="{% url 'order_list' %}" class="btn btn-primary">View My Orders</a>
+                <a href="{% url 'product_list' %}" class="btn btn-outline-secondary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Animation -->
+<style>
+    .animate-fade-in {
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
